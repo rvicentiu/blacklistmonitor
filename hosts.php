@@ -213,7 +213,7 @@ $(document).ready(function() {
 					echo('OK');
 				}
 				echo('</td>');
-				echo('<td>'. unserialize($row['senderbaseScore']) .'</td>')
+				echo('<td style="white-space: nowrap">'. $row['senderbaseScore'] .'</td>')
 			}
 			echo('</tr>');
 		}
