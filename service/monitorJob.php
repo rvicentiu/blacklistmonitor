@@ -44,8 +44,8 @@ if( (empty(Utilities::$domainBlacklists)===true) && (empty(Utilities::$ipBlackli
 $preResult = Utilities::checkBlacklists($monitor['ipDomain']);
 print_r($preResult, false);
 if (!empty($preResult)) {
-	print_r($preResult[2], false);
-	$senderScore = floatval($preResult[2]);
+	print_r($preResult[0][2], false);
+	$senderScore = floatval($preResult[0][2]);
 	array_pop($preResult);
 } else {
 	$senderScore = 0.0;
