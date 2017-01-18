@@ -51,7 +51,7 @@ class Utilities {
 	
 	public static function checkBlacklists($domainOrIp, $reportClean=false){
 		self::$isBlocked = 0;
-		self::$senderbaseScore = 0.0;
+		$senderbaseScore = 0.0;
 		$return = array();
 		if(_IpAddresses::isIPAddress($domainOrIp)){
 			foreach(self::$ipBlacklists as $server){
@@ -59,7 +59,7 @@ class Utilities {
 				
 				if($r!='') {
 					if(is_numeric($r) && strlen($r)<=6) {
-						self::$senderbaseScore = $r;
+						$senderbaseScore = $r;
 						self::logBlockListStats($server, 'ip', false);
 						$r = '';
 					} else {
@@ -71,7 +71,7 @@ class Utilities {
 					self::logBlockListStats($server, 'ip', false);
 				}
 				if($r!='' || $reportClean==true) {
-					$return[] = array(trim($server),$r,self::$senderbaseScore);
+					$return[] = array(trim($server),$r,$senderbaseScore);
 				}
 			}
 		}else{
