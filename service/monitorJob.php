@@ -46,6 +46,8 @@ $preResult = Utilities::checkBlacklists($monitor['ipDomain']);
 if (empty($preResult)!=true) {
 	$senderScore = floatval($preResult[2]);
 	array_pop($preResult);
+} else {
+	$senderScore = 0.0;
 }
 $result = serialize($preResult);
 $isBlocked = Utilities::$isBlocked;
