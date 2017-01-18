@@ -84,7 +84,7 @@ class Utilities {
 					self::logBlockListStats($server, 'domain', false);
 				}
 				if($r!='' || $reportClean==true) {
-					$return[] = array(trim($server),$r);
+					$return[] = array(trim($server),$r, "");
 				}
 			}
 		}
