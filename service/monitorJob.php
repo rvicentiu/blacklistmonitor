@@ -42,6 +42,7 @@ if( (empty(Utilities::$domainBlacklists)===true) && (empty(Utilities::$ipBlackli
 
 //update monitor
 $preResult = array(Utilities::checkBlacklists($monitor['ipDomain']));
+printf($preResult);
 $senderScore = floatval($preResult[2]);
 array_pop($preResult);
 $result = serialize($preResult);
