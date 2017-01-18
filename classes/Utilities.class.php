@@ -163,6 +163,10 @@ class Utilities {
 						$a = explode("|",$test2);
 						$test = (isset($a[1])) ? 'Listed ' . $a[1] : $test2;
 					break;
+					case 'rf.senderbase.org':
+						echo($test2);
+						$test = $test2;
+					break;
 				}
 				if($test2!='') $test = $test2;
 			}else{
