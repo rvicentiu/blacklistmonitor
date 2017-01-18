@@ -41,10 +41,12 @@ if( (empty(Utilities::$domainBlacklists)===true) && (empty(Utilities::$ipBlackli
 }
 
 //update monitor
-$preResult = array(Utilities::checkBlacklists($monitor['ipDomain']));
-print_r($preResult, false);
-$senderScore = floatval($preResult[2]);
-array_pop($preResult);
+$preResult = Utilities::checkBlacklists($monitor['ipDomain']);
+//print_r($preResult, false);
+if (empty($preResult)!=true) {
+	$senderScore = floatval($preResult[2]);
+	array_pop($preResult);
+}
 $result = serialize($preResult);
 $isBlocked = Utilities::$isBlocked;
 $rdns = Utilities::lookupHostDNS($monitor['ipDomain']);
