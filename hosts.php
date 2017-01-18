@@ -60,7 +60,7 @@ if($searchS != ''){
 		or status like '%".$mysql->escape($searchS)."%' ) "; 
 }
 $sql = "
-select m.isBlocked, m.lastUpdate, m.ipDomain, m.lastStatusChangeTime, m.rDNS, m.status, g.groupName, g.id
+select m.isBlocked, m.lastUpdate, m.ipDomain, m.lastStatusChangeTime, m.rDNS, m.status, m.senderbaseScore, g.groupName, g.id
 from monitors m 
 	inner join monitorGroup g on g.id = m.monitorGroupId
 where 1=1 $hostTypeSQL $searchSQL
