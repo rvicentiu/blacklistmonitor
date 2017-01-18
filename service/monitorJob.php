@@ -41,7 +41,9 @@ if( (empty(Utilities::$domainBlacklists)===true) && (empty(Utilities::$ipBlackli
 }
 
 //update monitor
-$result = serialize(Utilities::checkBlacklists($monitor['ipDomain']));
+$preResult = Utilities::checkBlacklists($monitor['ipDomain']);
+$result = serialize($preResult[0], $preResult[1]);
+$senderScore = float($preResult[2]);
 $isBlocked = Utilities::$isBlocked;
 $rdns = Utilities::lookupHostDNS($monitor['ipDomain']);
 $ctime = date('Y-m-d H:i:s');
@@ -52,7 +54,8 @@ lastStatusChanged = 0,
 rDNS = '".$mysql->escape($rdns)."', 
 isBlocked = $isBlocked,
 lastUpdate = '$ctime', 
-status = '".$mysql->escape($result)."' 
+status = '".$mysql->escape($result)."',
+senderbaseScore = '".$mysql->escape($senderScore)."' 
 where ipDomain = '".$mysql->escape($monitor['ipDomain'])."'
 ");
 

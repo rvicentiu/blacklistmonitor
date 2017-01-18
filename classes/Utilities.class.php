@@ -51,18 +51,27 @@ class Utilities {
 	
 	public static function checkBlacklists($domainOrIp, $reportClean=false){
 		self::$isBlocked = 0;
+		self::$senderbaseScore = 0.0;
 		$return = array();
 		if(_IpAddresses::isIPAddress($domainOrIp)){
 			foreach(self::$ipBlacklists as $server){
 				$r = self::ipCheck($domainOrIp, $server);
+				
 				if($r!='') {
-					self::$isBlocked = 1;
-					self::logBlockListStats($server, 'ip', true);
+					if(is_numeric($r) && strlen($r)<=6) {
+						self::$senderbaseScore = $r;
+						self::logBlockListStats($server, 'ip', false);
+						$r = '';
+					} else {
+						self::$isBlocked = 1;
+						self::logBlockListStats($server, 'ip', true);
+					}
+					
 				}else{
 					self::logBlockListStats($server, 'ip', false);
 				}
 				if($r!='' || $reportClean==true) {
-					$return[] = array(trim($server),$r);
+					$return[] = array(trim($server),$r,self::$senderbaseScore);
 				}
 			}
 		}else{
