@@ -143,7 +143,7 @@ class Utilities {
 		$testArray = preg_split("/IN\s+A\s+/i", $test);
 		$test = trim(end($testArray));
 		//		echo "<pre>$test</pre>\n";
-		if(trim($test)!=''){
+		if(trim($test)!='' || $server==="rf.senderbase.org"){
 			if(Setup::$settings['rbl_txt_extended_status']){
 				$t = "dig @".self::randomDNSServer()." +time=".Setup::$settings['dns_request_timeout']." $host txt";
 		//		echo("$t</br>");
