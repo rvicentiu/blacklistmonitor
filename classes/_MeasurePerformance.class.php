@@ -14,6 +14,10 @@ class _MeasurePerformance {
 	public $runTime = 0;
 
 	public function _MeasurePerformance(){
+		self::__construct();
+	}
+
+	public function __construct(){
 		$this->startTime = microtime(true);
 	}
 
