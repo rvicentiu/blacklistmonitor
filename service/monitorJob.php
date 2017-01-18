@@ -43,7 +43,7 @@ if( (empty(Utilities::$domainBlacklists)===true) && (empty(Utilities::$ipBlackli
 //update monitor
 $preResult = Utilities::checkBlacklists($monitor['ipDomain']);
 $result = serialize($preResult[0], $preResult[1]);
-$senderScore = float($preResult[2]);
+$senderScore = floatval($preResult[2]);
 $isBlocked = Utilities::$isBlocked;
 $rdns = Utilities::lookupHostDNS($monitor['ipDomain']);
 $ctime = date('Y-m-d H:i:s');
