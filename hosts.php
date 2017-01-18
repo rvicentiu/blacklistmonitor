@@ -174,6 +174,7 @@ $(document).ready(function() {
 				<th style="white-space: nowrap">Last Change</th>
 				<th>DNS</th>
 				<th>Current Status</th>
+				<th>SenderBase</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -212,6 +213,7 @@ $(document).ready(function() {
 					echo('OK');
 				}
 				echo('</td>');
+				echo('<td>'. $s = unserialize($row['senderbaseScore']) .'</td>')
 			}
 			echo('</tr>');
 		}
