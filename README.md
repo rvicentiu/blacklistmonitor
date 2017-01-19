@@ -71,7 +71,7 @@ edit crontab
 crontab -e
 ```
 
-## Service
+## Service with Upstart
 ```
 cp /var/www/html/blacklistmonitor/setup/blacklistmonitor-ubuntu-upstart.conf /etc/init/blacklistmonitor.conf
 ```
@@ -81,6 +81,18 @@ cp /var/www/html/blacklistmonitor/setup/blacklistmonitor-ubuntu-upstart.conf /et
 start blacklistmonitor
 stop blacklistmonitor
 restart blacklistmonitor
+```
+
+## Service with SystemCtl(SystemD CentOS or Ubuntu 15.x.x)
+```
+cp /var/www/html/blacklistmonitor/setup/blacklistmonitor-centos-systemd.conf /etc/systemd/system/blacklistmonitor.service
+```
+
+### Start/stop/restart with SystemCtl
+```
+systemctl restart blacklistmonitor.service
+systemctl stop blacklistmonitor.service
+systemctl start blacklistmonitor.service
 ```
 
 ### Website
