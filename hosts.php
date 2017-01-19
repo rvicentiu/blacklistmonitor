@@ -214,11 +214,11 @@ $(document).ready(function() {
 				}
 				echo('</td>');
 				if ($row['senderbaseScore']> 1) {
-					echo('<td style="white-space: nowrap;background: green">');
+					echo('<td style="white-space: nowrap;background: rgba(12, 173, 0, 0.38)">');
 				} else if ($row['senderbaseScore']< -1) {
-					echo('<td style="white-space: nowrap;background: red">');
+					echo('<td style="white-space: nowrap;background: rgba(173, 0, 0, 0.38)">');
 				} else {
-					echo('<td style="white-space: nowrap;background: grey">');
+					echo('<td style="white-space: nowrap;background: rgba(87, 87, 87, 0.38)">');
 				}
 				
 				echo($row['senderbaseScore']);
