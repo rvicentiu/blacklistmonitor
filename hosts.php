@@ -213,7 +213,16 @@ $(document).ready(function() {
 					echo('OK');
 				}
 				echo('</td>');
-				echo('<td style="white-space: nowrap">'. $row['senderbaseScore'] .'</td>');
+				if ($row['senderbaseScore']> 1) {
+					echo('<td style="white-space: nowrap;background: green">');
+				} else if ($row['senderbaseScore']< -1) {
+					echo('<td style="white-space: nowrap;background: red">');
+				} else {
+					echo('<td style="white-space: nowrap;background: grey">');
+				}
+				
+				echo($row['senderbaseScore']);
+				echo('</td>');
 			}
 			echo('</tr>');
 		}
