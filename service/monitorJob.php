@@ -21,6 +21,16 @@ if($options['h'] == ''){
 	exit();
 }
 
+function searchFunction($array, $index, $value)
+{
+   foreach($array as $key => $array)
+   {
+      if ( $array[$index] === $value )
+         return $key;
+   }
+   return false;
+}
+
 $mysql = new _MySQL();
 $mysql->connect(Setup::$connectionArray);
 
@@ -43,9 +53,10 @@ if( (empty(Utilities::$domainBlacklists)===true) && (empty(Utilities::$ipBlackli
 //update monitor
 $preResult = Utilities::checkBlacklists($monitor['ipDomain']);
 // print_r($preResult, false);
-print_r($preResult, false);
-$dex = array_search("rf.senderbase.org", array_column($preResult, 0));
-if (!empty($preResult) && $dex) {
+// print_r($preResult, false);
+$dex = searchFunction($preResult, 0, "rf.senderbase.org");
+echo($dex);
+if (!empty($preResult) && $dex !== FALSE) {
 	echo("INSIDE");
 	 print_r($preResult[$dex][1], false);
 	$senderScore = floatval($preResult[$dex][1]);
