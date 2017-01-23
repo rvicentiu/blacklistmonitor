@@ -175,6 +175,7 @@ $(document).ready(function() {
 				<th>DNS</th>
 				<th>Current Status</th>
 				<th>SenderBase</th>
+				<th>SenderScore</th>
 			</tr>
 		</thead>
 		<tbody>

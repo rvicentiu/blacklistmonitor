@@ -55,15 +55,32 @@ $preResult = Utilities::checkBlacklists($monitor['ipDomain']);
 // print_r($preResult, false);
 // print_r($preResult, false);
 $dex = searchFunction($preResult, 0, "rf.senderbase.org");
-echo($dex);
+// echo($dex);
 if (!empty($preResult) && $dex !== FALSE) {
-	echo("INSIDE");
+	// echo("INSIDE");
 	 print_r($preResult[$dex][1], false);
-	$senderScore = floatval($preResult[$dex][1]);
+	$senderbaseScore = floatval($preResult[$dex][1]);
 	$mysql->runQuery("
 		update monitors
 		set
-		senderbaseScore = '$senderScore' 
+		senderbaseScore = '$senderbaseScore' 
+		where ipDomain = '".$mysql->escape($monitor['ipDomain'])."'
+		");
+	// $dex = array_search("rf.senderbase.org", array_column($preResult, 0));
+	unset($preResult[$dex]);
+}
+$dex = searchFunction($preResult, 0, "score.senderscore.com");
+// echo($dex);
+if (!empty($preResult) && $dex !== FALSE) {
+	// echo("INSIDE");
+	 print_r($preResult[$dex][1], false);
+	$scoreExtract = explode('.', $preResult[$dex][1]);
+
+	$senderScore = intval($scoreExtract[3]);
+	$mysql->runQuery("
+		update monitors
+		set
+		senderScore = '$senderScore' 
 		where ipDomain = '".$mysql->escape($monitor['ipDomain'])."'
 		");
 	// $dex = array_search("rf.senderbase.org", array_column($preResult, 0));
