@@ -51,14 +51,14 @@ class Utilities {
 	
 	public static function checkBlacklists($domainOrIp, $reportClean=false){
 		self::$isBlocked = 0;
-		$senderbaseScore = 0.0;
+		$senderbaseScore = 0;
 		$return = array();
 		if(_IpAddresses::isIPAddress($domainOrIp)){
 			foreach(self::$ipBlacklists as $server){
 				$r = self::ipCheck($domainOrIp, $server);
 				// echo(is_array($r));
 				
-				if($r[1]!='') {
+				if($r[1]!=0) {
 					// echo($r[1]);
 						$senderbaseScore = $r[1];
 					}
@@ -133,7 +133,7 @@ class Utilities {
 	public static function ipCheck($ip, $server){
 		if(_IpAddresses::isIPAddress($ip)===false) return '';
 		$server = trim($server);
-		$scoreTest = "";
+		$scoreTest = 0;
 		$parts = explode('.', $ip);
 		$reverseIp = implode('.', array_reverse($parts));
 		$text = "";
@@ -197,7 +197,7 @@ class Utilities {
 		}
 		if(strripos($test,'not found')!==false) return '';
 		if(strripos($test,'SERVFAIL')!==false) return '';
-		return array(trim($test), trim($scoreTest));
+		return array(trim($test), $scoreTest);
 	}
 
 	public static function logBlockListStats($server, $monitorType, $isBlocked){
