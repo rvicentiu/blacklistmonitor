@@ -101,7 +101,32 @@ status = '".$mysql->escape($result)."'
 where ipDomain = '".$mysql->escape($monitor['ipDomain'])."'
 ");
 
+if($senderScore != $monitor['senderScore']) {
 
+		$mysql->runQuery("
+		insert into monitorHistory
+		(monitorTime, isBlocked, ipDomain, rDNS, senderScore)
+		values(
+		'".date('Y-m-d H:i:s')."',
+		0,
+		'".$mysql->escape($monitor['ipDomain'])."',
+		'".$mysql->escape($rdns)."',
+		'SenderScore change from ".$monitor['senderScore']." to ".$senderScore."')");
+
+};
+if($senderbaseScore != $monitor['senderbaseScore']) {
+
+		$mysql->runQuery("
+		insert into monitorHistory
+		(monitorTime, isBlocked, ipDomain, rDNS, senderbaseScore)
+		values(
+		'".date('Y-m-d H:i:s')."',
+		0,
+		'".$mysql->escape($monitor['ipDomain'])."',
+		'".$mysql->escape($rdns)."',
+		'SenderBaseScore change from ".$monitor['senderbaseScore']." to ".$senderbaseScore."')");
+
+};
 
 // status change on this host
 if(strcasecmp($result, $monitor['status']) != 0){
