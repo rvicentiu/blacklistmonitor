@@ -57,10 +57,11 @@ class Utilities {
 			foreach(self::$ipBlacklists as $server){
 				$r = self::ipCheck($domainOrIp, $server);
 				// echo(is_array($r));
-
+				echo($r[1]);
 				if($r[1]!='') {
 						$senderbaseScore = $r[1];
 					}
+				echo($r[0]);
 				if($r[0]!='') {
 						self::$isBlocked = 1;
 						self::logBlockListStats($server, 'ip', true);					
@@ -162,7 +163,7 @@ class Utilities {
 				$testArray = preg_split("/IN\s+TXT\s+/i", $SBtest);
 				$SBtest = trim(end($testArray));
 				$SBtest = str_replace(array('\'','"'),'',$SBtest);
-				echo($SBtest);
+				//echo($SBtest);
 				$scoreTest = $SBtest;
 		}
 
