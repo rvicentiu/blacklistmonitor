@@ -58,19 +58,19 @@ class Utilities {
 				$r = self::ipCheck($domainOrIp, $server);
 				// echo(is_array($r));
 				
-				if($r[1]!=0) {
-					// echo($r[1]);
-						$senderbaseScore = $r[1];
-					}
+				// if($server === "rf.senderbase.org") {
+					
+				// 		$senderbaseScore = $r;
+				// 	}
 				// echo($r[0]);
-				if($r[0]!='') {
+				if($r[0]!='' && $server!== "rf.senderbase.org") {
 						self::$isBlocked = 1;
 						self::logBlockListStats($server, 'ip', true);					
 				}else{
 					self::logBlockListStats($server, 'ip', false);
 				}
 				if($r!='' || $reportClean==true) {
-					$return[] = array(trim($server),$r[0],$senderbaseScore);
+					$return[] = array(trim($server),$r);
 				}
 			}
 		}else{
@@ -83,7 +83,7 @@ class Utilities {
 					self::logBlockListStats($server, 'domain', false);
 				}
 				if($r!='' || $reportClean==true) {
-					$return[] = array(trim($server),$r, "");
+					$return[] = array(trim($server),$r);
 				}
 			}
 		}
@@ -165,7 +165,7 @@ class Utilities {
 				$SBtest = trim(end($testArray));
 				$SBtest = str_replace(array('\'','"'),'',$SBtest);
 				//echo($SBtest);
-				$scoreTest = $SBtest;
+				$test = $SBtest;
 		}
 
 
@@ -197,7 +197,8 @@ class Utilities {
 		}
 		if(strripos($test,'not found')!==false) return '';
 		if(strripos($test,'SERVFAIL')!==false) return '';
-		return array(trim($test), $scoreTest);
+		return trim($test);
+		
 	}
 
 	public static function logBlockListStats($server, $monitorType, $isBlocked){
