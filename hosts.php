@@ -60,7 +60,7 @@ if($searchS != ''){
 		or status like '%".$mysql->escape($searchS)."%' ) "; 
 }
 $sql = "
-select m.isBlocked, m.lastUpdate, m.ipDomain, m.lastStatusChangeTime, m.rDNS, m.status, m.senderbaseScore, g.groupName, g.id
+select m.isBlocked, m.lastUpdate, m.ipDomain, m.lastStatusChangeTime, m.rDNS, m.status, m.senderbaseScore, m.senderScore, g.groupName, g.id
 from monitors m 
 	inner join monitorGroup g on g.id = m.monitorGroupId
 where 1=1 $hostTypeSQL $searchSQL
@@ -223,6 +223,17 @@ $(document).ready(function() {
 				}
 				
 				echo($row['senderbaseScore']);
+				echo('</td>');
+
+				if ($row['senderScore']>= 75) {
+					echo('<td style="white-space: nowrap;background: rgba(12, 173, 0, 0.38)">');
+				} else if ($row['senderScore']<= 74 && $row['senderScore'] >= 50) {
+					echo('<td style="white-space: nowrap;background: rgba(173, 0, 0, 0.38)">');
+				} else {
+					echo('<td style="white-space: nowrap;background: rgba(87, 87, 87, 0.38)">');
+				}
+				
+				echo($row['senderScore']);
 				echo('</td>');
 			}
 			echo('</tr>');
