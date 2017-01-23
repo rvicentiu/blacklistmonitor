@@ -13,6 +13,7 @@ Application for monitoring Domains and IPs on RBLs.  With blacklistmonitor you c
 - Web based reporting
 - API for integration or access the mysql database directly
 - Email, SMS, and Twitter Alerts
+- Polls Senderbase Score
 
 ## Prerequisite software
 - [MySQL](http://www.MySQL.org) or [MariaDB](https://mariadb.org/) are needed for the database.

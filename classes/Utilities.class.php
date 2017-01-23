@@ -58,7 +58,7 @@ class Utilities {
 				$r = self::ipCheck($domainOrIp, $server);
 				
 				if($r!='') {
-					if(is_numeric($r) && strlen($r)<=6) {
+					if(is_numeric($r) && strlen($r)<=12) {
 						$senderbaseScore = $r;
 						self::logBlockListStats($server, 'ip', false);
 						$r = '';
