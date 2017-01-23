@@ -59,10 +59,10 @@ class Utilities {
 				// echo(is_array($r));
 				
 				if($r[1]!='') {
-					echo($r[1]);
+					// echo($r[1]);
 						$senderbaseScore = $r[1];
 					}
-				echo($r[0]);
+				// echo($r[0]);
 				if($r[0]!='') {
 						self::$isBlocked = 1;
 						self::logBlockListStats($server, 'ip', true);					
