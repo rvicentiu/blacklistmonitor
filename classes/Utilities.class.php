@@ -57,8 +57,9 @@ class Utilities {
 			foreach(self::$ipBlacklists as $server){
 				$r = self::ipCheck($domainOrIp, $server);
 				// echo(is_array($r));
-				echo($r[1]);
+				
 				if($r[1]!='') {
+					echo($r[1]);
 						$senderbaseScore = $r[1];
 					}
 				echo($r[0]);
