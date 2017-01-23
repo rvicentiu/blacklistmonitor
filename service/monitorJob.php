@@ -107,26 +107,28 @@ if($senderScore != $monitor['senderScore']) {
 
 		$mysql->runQuery("
 		insert into monitorHistory
-		(monitorTime, isBlocked, ipDomain, rDNS, senderScore)
+		(monitorTime, isBlocked, ipDomain, rDNS, status, senderScore)
 		values(
 		'".date('Y-m-d H:i:s')."',
 		0,
 		'".$mysql->escape($monitor['ipDomain'])."',
 		'".$mysql->escape($rdns)."',
-		'SenderScore change from ".$monitor['senderScore']." to ".$senderScore."')");
+		'SenderScore change from ".$monitor['senderScore']." to ".$senderScore."',
+		".$senderScore.")");
 
 };
 if($senderbaseScore != $monitor['senderbaseScore']) {
 
 		$mysql->runQuery("
 		insert into monitorHistory
-		(monitorTime, isBlocked, ipDomain, rDNS, senderbaseScore)
+		(monitorTime, isBlocked, ipDomain, rDNS, , status, senderbaseScore)
 		values(
 		'".date('Y-m-d H:i:s')."',
 		0,
 		'".$mysql->escape($monitor['ipDomain'])."',
 		'".$mysql->escape($rdns)."',
-		'SenderBaseScore change from ".$monitor['senderbaseScore']." to ".$senderbaseScore."')");
+		'SenderBaseScore change from ".$monitor['senderbaseScore']." to ".$senderbaseScore."',
+		".$senderbaseScore.")");
 
 };
 
