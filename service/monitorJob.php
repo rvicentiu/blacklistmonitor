@@ -44,17 +44,19 @@ if( (empty(Utilities::$domainBlacklists)===true) && (empty(Utilities::$ipBlackli
 $preResult = Utilities::checkBlacklists($monitor['ipDomain']);
 // print_r($preResult, false);
 print_r($preResult, false);
-if (!empty($preResult) && $preResult[0][0] === "rf.senderbase.org") {
+$dex = array_search("rf.senderbase.org", array_column($preResult, 0));
+if (!empty($preResult) && $dex) {
 	echo("INSIDE");
-	 print_r($preResult[0][1], false);
-	$senderScore = floatval($preResult[0][1]);
+	 print_r($preResult[$dex][1], false);
+	$senderScore = floatval($preResult[$dex][1]);
 	$mysql->runQuery("
 		update monitors
 		set
 		senderbaseScore = '$senderScore' 
 		where ipDomain = '".$mysql->escape($monitor['ipDomain'])."'
 		");
-	array_pop($preResult);
+	// $dex = array_search("rf.senderbase.org", array_column($preResult, 0));
+	unset($preResult[$dex]);
 }
 $result = serialize($preResult);
 $isBlocked = Utilities::$isBlocked;
