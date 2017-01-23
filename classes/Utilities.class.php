@@ -63,7 +63,7 @@ class Utilities {
 				// 		$senderbaseScore = $r;
 				// 	}
 				 echo($server);
-				if($r[0]!='' && trim($server) != "rf.senderbase.org") {
+				if($r!='' && trim($server) != "rf.senderbase.org") {
 						self::$isBlocked = 1;
 						self::logBlockListStats($server, 'ip', true);					
 				}else{
