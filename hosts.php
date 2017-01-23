@@ -227,7 +227,7 @@ $(document).ready(function() {
 
 				if ($row['senderScore']>= 75) {
 					echo('<td style="white-space: nowrap;background: rgba(12, 173, 0, 0.38)">');
-				} else if ($row['senderScore']<= 74 && $row['senderScore'] >= 50) {
+				} else if ($row['senderScore']<= 74 && $row['senderScore'] >= 1) {
 					echo('<td style="white-space: nowrap;background: rgba(173, 0, 0, 0.38)">');
 				} else {
 					echo('<td style="white-space: nowrap;background: rgba(87, 87, 87, 0.38)">');
