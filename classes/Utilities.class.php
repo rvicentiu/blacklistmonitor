@@ -152,7 +152,25 @@ class Utilities {
 		$testArray = preg_split("/IN\s+A\s+/i", $test);
 		$test = trim(end($testArray));
 		//		echo "<pre>$test</pre>\n";
-		if(trim($test)!='' || $server==="rf.senderbase.org"){
+		if($server==="rf.senderbase.org"){
+			$t = "dig @".self::randomDNSServer()." +time=".Setup::$settings['dns_request_timeout']." $host txt";
+			$text = shell_exec($t);
+			$SBtest = Utilities::parseBetweenText(
+					$text,
+					";; ANSWER SECTION:\n",
+					"\n\n",
+					false,
+					false,
+					true);
+				$testArray = preg_split("/IN\s+TXT\s+/i", $SBtest);
+				$SBtest = trim(end($testArray));
+				$SBtest = str_replace(array('\'','"'),'',$SBtest);
+				echo($SBtest);
+				//$test = $SBtest;
+		}
+
+
+		if(trim($test)!=''){
 			if(Setup::$settings['rbl_txt_extended_status']){
 				$t = "dig @".self::randomDNSServer()." +time=".Setup::$settings['dns_request_timeout']." $host txt";
 		//		echo("$t</br>");
@@ -171,10 +189,6 @@ class Utilities {
 					case 'bl.mailspike.net':
 						$a = explode("|",$test2);
 						$test = (isset($a[1])) ? 'Listed ' . $a[1] : $test2;
-					break;
-					case 'rf.senderbase.org':
-						echo($test2);
-						$test = $test2;
 					break;
 				}
 				if($test2!='') $test = $test2;
