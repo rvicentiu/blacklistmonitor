@@ -56,6 +56,7 @@ $preResult = Utilities::checkBlacklists($monitor['ipDomain']);
 // print_r($preResult, false);
 $dex = searchFunction($preResult, 0, "rf.senderbase.org");
 // echo($dex);
+$senderbaseScore = 0;
 if (!empty($preResult) && $dex !== FALSE) {
 	// echo("INSIDE");
 	 print_r($preResult[$dex][1], false);
@@ -71,6 +72,7 @@ if (!empty($preResult) && $dex !== FALSE) {
 }
 $dex = searchFunction($preResult, 0, "score.senderscore.com");
 // echo($dex);
+$senderScore = 0;
 if (!empty($preResult) && $dex !== FALSE) {
 	// echo("INSIDE");
 	 print_r($preResult[$dex][1], false);
