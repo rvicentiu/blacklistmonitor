@@ -103,7 +103,7 @@ status = '".$mysql->escape($result)."'
 where ipDomain = '".$mysql->escape($monitor['ipDomain'])."'
 ");
 
-if($senderScore != $monitor['senderScore']) {
+if(intval($senderScore) != intval($monitor['senderScore'])) {
 
 		$mysql->runQuery("
 		insert into monitorHistory
@@ -117,7 +117,7 @@ if($senderScore != $monitor['senderScore']) {
 		".$senderScore.")");
 
 };
-if($senderbaseScore != $monitor['senderbaseScore']) {
+if(floatval($senderbaseScore) != floatval($monitor['senderbaseScore'])) {
 
 		$mysql->runQuery("
 		insert into monitorHistory
