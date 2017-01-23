@@ -57,10 +57,11 @@ class Utilities {
 			foreach(self::$ipBlacklists as $server){
 				$r = self::ipCheck($domainOrIp, $server);
 				echo(is_array($r));
-				
+
 				if($r!='') {
 
 					if(is_array($r)) {
+						echo($r[0]);
 						$senderbaseScore = $r[1];
 						self::logBlockListStats($server, 'ip', false);
 						$r = '';
