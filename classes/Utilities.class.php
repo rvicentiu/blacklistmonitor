@@ -56,20 +56,14 @@ class Utilities {
 		if(_IpAddresses::isIPAddress($domainOrIp)){
 			foreach(self::$ipBlacklists as $server){
 				$r = self::ipCheck($domainOrIp, $server);
-				echo(is_array($r));
+				// echo(is_array($r));
 
-				if($r!='') {
-
-					if(is_array($r)) {
-						echo($r[0]);
+				if($r[1]!='') {
 						$senderbaseScore = $r[1];
-						self::logBlockListStats($server, 'ip', false);
-						$r = '';
-					} else {
-						self::$isBlocked = 1;
-						self::logBlockListStats($server, 'ip', true);
 					}
-					
+				if($r[0]!='') {
+						self::$isBlocked = 1;
+						self::logBlockListStats($server, 'ip', true);					
 				}else{
 					self::logBlockListStats($server, 'ip', false);
 				}
