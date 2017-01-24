@@ -126,6 +126,7 @@ function toggleBlacklist(host){
 		?>
 		</tbody>
 	</table>
+	</div>
 	<form id="accountForm" class="form-horizontal" role="form" action="blockLists.php" method="post">
 		<div class="form-group">
 			<label class="col-sm-3 control-label" for="host">Host</label>
