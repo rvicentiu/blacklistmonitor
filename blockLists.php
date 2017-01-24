@@ -61,7 +61,8 @@ if (isset($_POST["submit"])) {
 			2,
 			1)");
 
-		$message[] = "Account updated.";
+		// $message[] = "Account updated.";
+		header('Location: blockLists.php');
 	// }
 }
 
