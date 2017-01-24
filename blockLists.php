@@ -130,7 +130,7 @@ function toggleBlacklist(host){
 		<div class="form-group">
 			<label class="col-sm-3 control-label" for="host">Host</label>
 			<div class="col-sm-6">
-				<input class="form-control" type="text" id="host" name="host" value="<?php echo($blocklist['host']);?>" placeholder="hostname">
+				<input class="form-control" type="text" id="host" name="host" placeholder="hostname">
 			</div>
 		</div>
 
@@ -138,15 +138,15 @@ function toggleBlacklist(host){
 		<label class="col-sm-3 control-label" for="monitorType">Monitor Type</label>
 			<div class="col-sm-6">
 				<select id="monitorType" name="monitorType" class="form-control">
-					<option value="ip"<?php if($blocklist['monitorType']=='ip') echo ' selected'?>>IP</option>
-					<option value="domain"<?php if($blocklist['monitorType']=='domain') echo ' selected'?>>Domain</option>
+					<option value="ip">IP</option>
+					<option value="domain">Domain</option>
 				</select>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label" for="description">Description</label>
 			<div class="col-sm-6">
-				<input class="form-control" type="text" id="description" name="description" value="<?php echo($blocklist['description']);?>" placeholder="description">
+				<input class="form-control" type="text" id="description" name="description" placeholder="description">
 			</div>
 		</div>
 
