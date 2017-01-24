@@ -16,6 +16,7 @@ $message = array();
 $newhost = array_key_exists('host', $_POST) ? substr(trim($_POST['host']),0,100) : '';
 $newmonitorType = array_key_exists('monitorType', $_POST) ? substr($_POST['monitorType'],0,8000) : '';
 $newdescription = array_key_exists('description', $_POST) ? substr($_POST['description'],0,8000) : '';
+
 // $passwd = array_key_exists('passwd', $_POST) ? substr($_POST['passwd'],0,32) : '';
 
 
@@ -47,7 +48,7 @@ $rs = $mysql->runQuery($sql);
 if (isset($_POST["submit"])) {
 	
 	//TODO: make sure blacklists are domains with an ip address on them
-	if(count($message) == 0){
+	// if(count($message) == 0){
 		//update
 		$mysql->runQuery("
 			insert into blockLists
@@ -61,7 +62,7 @@ if (isset($_POST["submit"])) {
 			1)");
 
 		$message[] = "Account updated.";
-	}
+	// }
 }
 
 include('header.inc.php');
@@ -189,6 +190,7 @@ foreach($message as $m){
 				<button type="submit" name="submit" value="submit" class="btn btn-primary">Add Blacklist</button>
 			</div>
 		</div>
+		</form>
 </div>
 
 <?php include('footer.inc.php'); ?>
