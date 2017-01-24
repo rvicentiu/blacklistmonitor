@@ -59,7 +59,7 @@ $dex = searchFunction($preResult, 0, "rf.senderbase.org");
 $senderbaseScore = 0;
 if (!empty($preResult) && $dex !== FALSE) {
 	// echo("INSIDE");
-	 print_r($preResult[$dex][1], false);
+	 //print_r($preResult[$dex][1], false);
 	$senderbaseScore = floatval($preResult[$dex][1]);
 	$mysql->runQuery("
 		update monitors
@@ -75,7 +75,7 @@ $dex = searchFunction($preResult, 0, "score.senderscore.com");
 $senderScore = 0;
 if (!empty($preResult) && $dex !== FALSE) {
 	// echo("INSIDE");
-	 print_r($preResult[$dex][1], false);
+	 //print_r($preResult[$dex][1], false);
 	$scoreExtract = explode('.', $preResult[$dex][1]);
 
 	$senderScore = intval($scoreExtract[3]);
@@ -102,7 +102,7 @@ lastUpdate = '$ctime',
 status = '".$mysql->escape($result)."'
 where ipDomain = '".$mysql->escape($monitor['ipDomain'])."'
 ");
-
+echo(intval($senderScore), intval($monitor['senderScore']));
 if(intval($senderScore) != intval($monitor['senderScore'])) {
 
 		$mysql->runQuery("
@@ -117,6 +117,7 @@ if(intval($senderScore) != intval($monitor['senderScore'])) {
 		".$senderScore.")");
 
 };
+echo(floatval($senderbaseScore), floatval($monitor['senderbaseScore']));
 if(floatval($senderbaseScore) != floatval($monitor['senderbaseScore'])) {
 
 		$mysql->runQuery("
