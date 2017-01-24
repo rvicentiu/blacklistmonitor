@@ -30,10 +30,10 @@ if (isset($_POST["submit"])) {
 			insert into blockLists
 			(host, monitorType, functionCall, description, importance, isActive)
 			values(
-			".$newhost.",
-			".$newmonitorType.",
+			'".$newhost."',
+			'".$newmonitorType."',
 			'rbl',
-			".$newdescription.",
+			'".$newdescription."',
 			2,
 			1)");
 
