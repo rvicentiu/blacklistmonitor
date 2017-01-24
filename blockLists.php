@@ -17,6 +17,9 @@ $newhost = array_key_exists('host', $_POST) ? substr(trim($_POST['host']),0,100)
 $newmonitorType = array_key_exists('monitorType', $_POST) ? substr($_POST['monitorType'],0,8000) : '';
 $newdescription = array_key_exists('description', $_POST) ? substr($_POST['description'],0,8000) : '';
 
+$user = Utilities::getAccount();
+$mysql = new _MySQL();
+$mysql->connect(Setup::$connectionArray)
 // $passwd = array_key_exists('passwd', $_POST) ? substr($_POST['passwd'],0,32) : '';
 if (isset($_POST["submit"])) {
 	
@@ -40,9 +43,7 @@ if (isset($_POST["submit"])) {
 }
 
 
-$user = Utilities::getAccount();
-$mysql = new _MySQL();
-$mysql->connect(Setup::$connectionArray);
+;
 if($host != ''){
 	if($toggle==0){
 		$mysql->runQuery("
