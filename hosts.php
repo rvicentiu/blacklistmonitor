@@ -82,7 +82,8 @@ $hostsCountError = Utilities::getHostErrorCount($mysql, $monitorGroupId);
 
 <script>
 $(document).ready(function() { 
-	$("#hostTable").tablesorter();
+	$("#hostTable").tablesorter({sortList: [[0,0] 
+});
 	$(".reportType").change(function() {
 		$("#reportForm").submit();
 	});
