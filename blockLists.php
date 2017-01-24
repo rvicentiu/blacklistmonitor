@@ -126,6 +126,37 @@ function toggleBlacklist(host){
 		?>
 		</tbody>
 	</table>
+	<form id="accountForm" class="form-horizontal" role="form" action="blockLists.php" method="post">
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="host">Host</label>
+			<div class="col-sm-6">
+				<input class="form-control" type="text" id="host" name="host" value="<?php echo($blocklist['host']);?>" placeholder="hostname">
+			</div>
+		</div>
+
+		<div class="form-group">
+		<label class="col-sm-3 control-label" for="monitorType">Monitor Type</label>
+			<div class="col-sm-6">
+				<select id="monitorType" name="monitorType" class="form-control">
+					<option value="ip"<?php if($blocklist['monitorType']=='ip') echo ' selected'?>>IP</option>
+					<option value="domain"<?php if($blocklist['monitorType']=='domain') echo ' selected'?>>Domain</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="description">Description</label>
+			<div class="col-sm-6">
+				<input class="form-control" type="text" id="description" name="description" value="<?php echo($blocklist['description']);?>" placeholder="description">
+			</div>
+		</div>
+
+
+
+		<div class="form-group">
+			<div class="col-sm-offset-3 col-sm-6">
+				<button type="submit" name="submit" value="submit" class="btn btn-primary">Add Blacklist</button>
+			</div>
+		</div>
 </div>
 
 <?php include('footer.inc.php'); ?>

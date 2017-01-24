@@ -102,7 +102,9 @@ lastUpdate = '$ctime',
 status = '".$mysql->escape($result)."'
 where ipDomain = '".$mysql->escape($monitor['ipDomain'])."'
 ");
-echo(intval($senderScore). " " . intval($monitor['senderScore']));
+
+//Log SenderScore score if changed.
+//echo(intval($senderScore). " " . intval($monitor['senderScore']));
 if(intval($senderScore) != intval($monitor['senderScore'])) {
 
 		$mysql->runQuery("
@@ -117,7 +119,9 @@ if(intval($senderScore) != intval($monitor['senderScore'])) {
 		".$senderScore.")");
 
 };
-echo(floatval($senderbaseScore). " " . floatval($monitor['senderbaseScore']));
+
+// Log Senderbase score if changed.
+//echo(floatval($senderbaseScore). " " . floatval($monitor['senderbaseScore']));
 if(floatval($senderbaseScore) != floatval($monitor['senderbaseScore'])) {
 
 		$mysql->runQuery("
