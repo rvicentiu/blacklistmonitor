@@ -19,7 +19,7 @@ $newdescription = array_key_exists('description', $_POST) ? substr($_POST['descr
 
 $user = Utilities::getAccount();
 $mysql = new _MySQL();
-$mysql->connect(Setup::$connectionArray)
+$mysql->connect(Setup::$connectionArray);
 // $passwd = array_key_exists('passwd', $_POST) ? substr($_POST['passwd'],0,32) : '';
 if (isset($_POST["submit"])) {
 	
@@ -40,10 +40,10 @@ if (isset($_POST["submit"])) {
 		// $message[] = "Account updated.";
 		header('Location: blockLists.php');
 	// }
-}
+};
 
 
-;
+
 if($host != ''){
 	if($toggle==0){
 		$mysql->runQuery("
