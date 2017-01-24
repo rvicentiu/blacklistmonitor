@@ -109,7 +109,7 @@ $(document).ready(function() {
 					if(isset($r[1])) echo ' - '. htmlentities($r[1]);
 					echo "<br/>";
 				}
-			}else if ($row['status'] != '' && substr($row['status'], 0, 1) != 'a:') {
+			}else if ($row['status'] != '' && strlen($row['status']) < 30 ) {
 				echo($row['status']);
 			}else{
 				echo('OK');
