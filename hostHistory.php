@@ -109,6 +109,8 @@ $(document).ready(function() {
 					if(isset($r[1])) echo ' - '. htmlentities($r[1]);
 					echo "<br/>";
 				}
+			}else if ($row['status'] != '') {
+				echo($row['status']);
 			}else{
 				echo('OK');
 			}
