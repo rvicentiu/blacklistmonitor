@@ -11,6 +11,14 @@ $host = array_key_exists('host', $_POST) ? $_POST['host'] : '';
 $toggle = array_key_exists('toggle', $_POST) ? (int)$_POST['toggle'] : 0;
 
 $titlePreFix = "Block Lists";
+$message = array();
+
+$newhost = array_key_exists('host', $_POST) ? substr(trim($_POST['host']),0,100) : '';
+$newmonitorType = array_key_exists('monitorType', $_POST) ? substr($_POST['monitorType'],0,8000) : '';
+$newdescription = array_key_exists('description', $_POST) ? substr($_POST['description'],0,8000) : '';
+// $passwd = array_key_exists('passwd', $_POST) ? substr($_POST['passwd'],0,32) : '';
+
+
 
 $user = Utilities::getAccount();
 $mysql = new _MySQL();
@@ -36,6 +44,25 @@ from blockLists
 order by isActive desc, blocksToday desc
 ";
 $rs = $mysql->runQuery($sql);
+if (isset($_POST["submit"])) {
+	
+	//TODO: make sure blacklists are domains with an ip address on them
+	if(count($message) == 0){
+		//update
+		$mysql->runQuery("
+			insert into blockLists
+			(host, monitorType, functionCall, description, importance, isActive)
+			values(
+			".$host.",
+			".$monitorType.",
+			'rbl',
+			".$description.",
+			2,
+			1)");
+
+		$message[] = "Account updated.";
+	}
+}
 
 include('header.inc.php');
 include('accountSubnav.inc.php');
@@ -80,7 +107,11 @@ function toggleBlacklist(host){
 		<a class="glyphicon glyphicon-remove"></a> - Disabled<br>
 	</div>
 </div>
-
+<?php
+foreach($message as $m){
+	echo("<div class=\"alert alert-info alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>$m</div>");
+}
+?>
 <div class="table-responsive">
 	<table id="blockListTable" class="tablesorter table table-bordered table-striped">
 		<thead>
