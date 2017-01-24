@@ -18,7 +18,26 @@ $newmonitorType = array_key_exists('monitorType', $_POST) ? substr($_POST['monit
 $newdescription = array_key_exists('description', $_POST) ? substr($_POST['description'],0,8000) : '';
 
 // $passwd = array_key_exists('passwd', $_POST) ? substr($_POST['passwd'],0,32) : '';
+if (isset($_POST["submit"])) {
+	
+	//TODO: make sure blacklists are domains with an ip address on them
+	// if(count($message) == 0){
+		//update
+		$mysql->runQuery("
+			insert into blockLists
+			(host, monitorType, functionCall, description, importance, isActive)
+			values(
+			".$newhost.",
+			".$newmonitorType.",
+			'rbl',
+			".$newdescription.",
+			2,
+			1)");
 
+		// $message[] = "Account updated.";
+		header('Location: blockLists.php');
+	// }
+}
 
 
 $user = Utilities::getAccount();
@@ -45,26 +64,7 @@ from blockLists
 order by isActive desc, blocksToday desc
 ";
 $rs = $mysql->runQuery($sql);
-if (isset($_POST["submit"])) {
-	
-	//TODO: make sure blacklists are domains with an ip address on them
-	// if(count($message) == 0){
-		//update
-		$mysql->runQuery("
-			insert into blockLists
-			(host, monitorType, functionCall, description, importance, isActive)
-			values(
-			".$newhost.",
-			".$newmonitorType.",
-			'rbl',
-			".$newdescription.",
-			2,
-			1)");
 
-		// $message[] = "Account updated.";
-		header('Location: blockLists.php');
-	// }
-}
 
 include('header.inc.php');
 include('accountSubnav.inc.php');
