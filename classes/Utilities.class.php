@@ -410,7 +410,7 @@ class Utilities {
 				}
 			exec('host -t mx -W 2 '.$host, $output2, $return2);
 			if ($return2 == 0) {
-				foreach ($return2 as $item) {
+				foreach ($output2 as $item) {
 					$mx = explode("is handled by ", $item);
 					if(count($mx) > 1)
 						$ir .= $mx[1].",";
@@ -418,7 +418,7 @@ class Utilities {
 			}
 			exec('host -t txt -W 2 '.$host, $output3, $return3);
 			if ($return3 == 0) {
-				foreach ($return3 as $item) {
+				foreach ($output2 as $item) {
 					$txt = explode("descriptive text  ", $item);
 					if(count($txt) > 1)
 						$ir .= $txt[1].",";
