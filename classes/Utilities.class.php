@@ -419,6 +419,7 @@ class Utilities {
 			exec('host -t txt -W 2 '.$host, $output3, $return3);
 			if ($return3 == 0) {
 				foreach ($output2 as $item) {
+					$item = str_replace('"',"", $item);
 					$txt = explode("descriptive text  ", $item);
 					if(count($txt) > 1)
 						$ir .= $txt[1].",";
