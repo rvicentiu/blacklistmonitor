@@ -400,7 +400,7 @@ class Utilities {
 			$host = escapeshellarg($host);
 			exec('host -t a -W 2 '.$host, $output, $return);
 			if ($return !== 0) {
-				return '';
+				//return '';
 			}else{
 				$output = implode($output);
 				$ips = _IpAddresses::getAllIPsFromString($output, true);
@@ -408,6 +408,30 @@ class Utilities {
 				foreach($ips as $ip){
 					$ir .= "$ip,";
 				}
+			exec('host -t mx -W 2 '.$host, $output2, $return2);
+			if ($return2 == 0) {
+				foreach ($return2 as $item) {
+					$mx = explode("is handled by ", $item);
+					if(count($mx) > 1)
+						$ir .= $mx[1].",";
+				}
+			}
+			exec('host -t txt -W 2 '.$host, $output3, $return3);
+			if ($return3 == 0) {
+				foreach ($return3 as $item) {
+					$txt = explode("descriptive text  ", $item);
+					if(count($txt) > 1)
+						$ir .= $txt[1].",";
+				}
+			}
+
+
+				
+			}
+
+			if ($return !== 0 && $return2 !== 0 && $return3 !== 0) {
+				return "";
+			} else {
 				return trim($ir,',');
 			}
 
