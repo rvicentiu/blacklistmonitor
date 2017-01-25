@@ -201,7 +201,7 @@ $(document).ready(function() {
 					echo(date("Y-n-j g:i a",strtotime($row['lastStatusChangeTime'])));
 					echo('</td>');
 				}
-				echo('<td>'.$row['rDNS'].'</td>');
+				echo('<td>'.str_replace(',', '<br />', $row['rDNS']).'</td>');
 				echo('<td>');
 				if($row['isBlocked']==1){
 					$s = unserialize($row['status']);
