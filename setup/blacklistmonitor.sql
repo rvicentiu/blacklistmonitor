@@ -77,7 +77,8 @@ INSERT INTO `blockLists` (`host`, `monitorType`, `functionCall`, `description`, 
 ('urired.spameatingmonkey.net', 'domain', 'rbl', 'Domains found in unwanted emails and preemptive technology. Automatically expires after 30 days of inactivity.', 'http://spameatingmonkey.com/', '0000-00-00 00:00:00', '2', '1', 0, 0, 0, 0),
 ('virbl.dnsbl.bit.nl', 'ip', 'rbl', '', '', '0000-00-00 00:00:00', '2', '0', 0, 0, 0, 0),
 ('zen.spamhaus.org', 'ip', 'rbl', 'Composite host block list of all spamhaus ips.', 'http://www.spamhaus.org/zen/', '0000-00-00 00:00:00', '3', '1', 0, 0, 0, 0),
-('rf.senderbase.org', 'ip', 'rbl', 'Senderbase Score DO NOT Remove', 'http://www.senderbase.org/', '0000-00-00 00:00:00', '3', '1', 0, 0, 0, 0);
+('rf.senderbase.org', 'ip', 'rbl', 'Senderbase Score DO NOT Remove', 'http://www.senderbase.org/', '0000-00-00 00:00:00', '3', '0', 0, 0, 0, 0);
+('score.senderscore.com', 'ip', 'rbl', 'SenderScore Score DO NOT Remove', 'https://www.senderscore.org/', '0000-00-00 00:00:00', '3', '1', 0, 0, 0, 0);
 
 --
 -- Table structure for table `monitorHistory`
@@ -110,7 +111,8 @@ CREATE TABLE IF NOT EXISTS `monitors` (
   `lastStatusChangeTime` datetime NOT NULL,
   `rDNS` varchar(200) NOT NULL,
   `status` text NOT NULL,
-  `senderbaseScore` FLOAT NOT NULL
+  `senderbaseScore` FLOAT NOT NULL,
+  `senderScore` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
