@@ -149,6 +149,7 @@ class Utilities {
 			false,
 			true);
 		$testArray = preg_split("/IN\s+A\s+/i", $test);
+		if (Setup::$settings['log_debug']) _Logging::appLog("parsed: $test \n raw: $text \n query: $t \n");
 		$test = trim(end($testArray));
 		//		echo "<pre>$test</pre>\n";
 		if($server==="rf.senderbase.org"){
