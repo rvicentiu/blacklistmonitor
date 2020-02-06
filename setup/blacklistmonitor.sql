@@ -90,7 +90,9 @@ CREATE TABLE IF NOT EXISTS `monitorHistory` (
   `isBlocked` tinyint(1) NOT NULL DEFAULT '0',
   `ipDomain` varchar(100) NOT NULL,
   `rDNS` varchar(200) NOT NULL,
-  `status` text NOT NULL
+  `status` text NOT NULL,
+  `senderbaseScore` FLOAT NOT NULL,
+  `senderScore` FLOAT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -112,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `monitors` (
   `rDNS` varchar(200) NOT NULL,
   `status` text NOT NULL,
   `senderbaseScore` FLOAT NOT NULL,
-  `senderScore` float NOT NULL
+  `senderScore` FLOAT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
