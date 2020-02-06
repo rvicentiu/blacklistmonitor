@@ -91,8 +91,8 @@ CREATE TABLE IF NOT EXISTS `monitorHistory` (
   `ipDomain` varchar(100) NOT NULL,
   `rDNS` varchar(200) NOT NULL,
   `status` text NOT NULL,
-  `senderbaseScore` FLOAT NOT NULL,
-  `senderScore` FLOAT NOT NULL
+  `senderbaseScore` FLOAT NOT NULL DEFAULT '0',
+  `senderScore` FLOAT NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -113,8 +113,8 @@ CREATE TABLE IF NOT EXISTS `monitors` (
   `lastStatusChangeTime` datetime NOT NULL,
   `rDNS` varchar(200) NOT NULL,
   `status` text NOT NULL,
-  `senderbaseScore` FLOAT NOT NULL,
-  `senderScore` FLOAT NOT NULL
+  `senderbaseScore` FLOAT NOT NULL DEFAULT '0',
+  `senderScore` FLOAT NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
